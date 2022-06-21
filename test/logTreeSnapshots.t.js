@@ -1,22 +1,21 @@
 const {
-    calculateSubtrees,
+    calculateNextRoot,
     mimcSponge,
     utils
 } = require('../index');
 
 (function () {
     const randomLeaves = utils.unsafeRandomLeaves(10);
-    const initialTrees = calculateSubtrees(mimcSponge, 20, 0, []);
+    const { filledSubtrees: initialTrees } = calculateNextRoot({hasher: mimcSponge});
     const treeSnapshots = [initialTrees];
     randomLeaves.forEach(
         (leaf, startIndex) => 
-            treeSnapshots.push(calculateSubtrees(
-                mimcSponge,
-                20,
+            treeSnapshots.push(calculateNextRoot({
+                hasher: mimcSponge,
                 startIndex,
-                [leaf],
-                treeSnapshots[startIndex]
-            ))
+                leaves: [leaf],
+                startSubtrees: treeSnapshots[startIndex]
+            }).filledSubtrees)
     );
     console.log(treeSnapshots);
-})()
+})();

@@ -1,15 +1,9 @@
 module.exports = {
-    // incremental tree
-    calculateSubtrees: require('./src/calculateSubtrees'),
-    calculateSubtreesV2: require('./src/calculateSubtreesV2'),
-
-    // mimc version
-    calculateUpdateProof: require('./src/calculateUpdateProof'),
-    calculateMassUpdateProof: require('./src/calculateMassUpdateProof'),
-    verifyProof: require('./src/verifyProof'),
-
-    // hashers & utils
+    MerkleTree: require('./src/merkleTree'),
+    calculateNextRoot: require('./src/calculateNextRoot'),
+    generateProof: require('./src/generateProof'),
     mimcSponge: require('./src/mimcSponge'),
     poseidon: require('./src/poseidon'),
     utils: require('./src/utils'),
-}
+    verifyProof: require('./src/verifyProof'),
+};
